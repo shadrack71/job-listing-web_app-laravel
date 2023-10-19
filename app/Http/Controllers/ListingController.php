@@ -24,7 +24,7 @@ class ListingController extends Controller
         return view('home', ['listings' =>  $listingsData]);
 
         }else if(request()->search){
-            $listings = Listing::latest()->filter(request(['search']))->paginate(10);
+        $listings = Listing::latest()->filter(request(['search']))->paginate(10);
 
         $listingsArray = $listings->toArray();
         
@@ -42,7 +42,7 @@ class ListingController extends Controller
         $listings = Listing::latest()->paginate(10);
         $listingsArray = $listings->toArray();
         
-         $listingsLink = $listings -> links();
+        $listingsLink = $listings -> links();
 
          $listingsData =[
           'listings' => $listingsArray['data'],
@@ -112,6 +112,8 @@ class ListingController extends Controller
             'website'=>'required',
             'description' => 'required'
         ]);
+
+        // TODO:updating gig photo 
         
         $listing->update($validatedInputUpdate);
         return redirect(route('updateGig',['listing' => $listing]))->with('msg','blog updated successfully'); 

@@ -2,12 +2,10 @@
 
 use App\Models\Blog;
 use App\Models\Listing;
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
-
 use App\Http\Controllers\ListingController;
 
 
@@ -25,14 +23,14 @@ use App\Http\Controllers\ListingController;
 
 // gigs listing routes
 
-Route::get('/',  [ListingController::class,'index'])->name('index');
+    Route::get('/',  [ListingController::class,'index'])->name('index');
 
-Route::get('/show/{id}', [ListingController::class,'show'])->name('show');
+    Route::get('/show/{id}', [ListingController::class,'show'])->name('show');
 
 // Route::get('/search', function (Request $request) {
 //     return view('home',[RegisterController::class,'registerAction']);
 // });
-Route::middleware('auth')->group(function(){
+    Route::middleware('auth')->group(function(){
 
     Route::delete('/listing/{listing}/delete',  [ListingController::class,'destroy'])->name('destroyGig');
 
@@ -47,11 +45,11 @@ Route::middleware('auth')->group(function(){
     Route::get('/listing/{listing}/update',[ListingController::class,'edit'])->name('updateGigView');
 });
 // admin routes
-Route::middleware(['auth','admin_auth'])->group(function(){
+    Route::middleware(['auth','admin_auth'])->group(function(){
 
     Route::get('/admin',[AdminController::class,'index'])->name('admin_dashboard');
     Route::get('admin/user/{id}', [AdminController::class,'viewUser'])->name('viewUser');
-       Route::delete('admin/user/{userId}/delete', [AdminController::class,'destroy'])->name('deleteUser');
+    Route::delete('admin/user/{userId}/delete', [AdminController::class,'destroy'])->name('deleteUser');
 });
 
 
